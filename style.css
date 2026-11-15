@@ -4,9 +4,10 @@
   --ease: cubic-bezier(.2,.7,.2,1);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+#page { overflow-x: clip; width: 100%; }
 body { font-family: 'Nunito', system-ui, sans-serif; color: var(--ink); background: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-body.locked { overflow: hidden; height: 100svh; }
+body.locked { overflow: hidden; height: 100dvh; }
 img, video { display: block; max-width: 100%; }
 button { font: inherit; }
 #hearts { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
@@ -23,9 +24,10 @@ em { font-style: italic; color: var(--rose); }
 .split .ch { display: inline-block; will-change: transform; }
 
 /* ---------- opening screen ---------- */
-#gate { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; text-align: center; color: #fff;
+#gate { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; height: 100dvh; z-index: 100; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
   background: radial-gradient(120% 90% at 50% 20%, #6b2a52 0%, var(--plum) 60%, #24091c 100%); }
-.gate-heart { width: 92px; fill: var(--rose); filter: drop-shadow(0 0 26px rgba(232,70,124,.75)); animation: thump 1.15s infinite; }
+.gate-inner { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 6vw; }
+.gate-heart { display: block; width: 92px; fill: var(--rose); filter: drop-shadow(0 0 26px rgba(232,70,124,.75)); animation: thump 1.15s infinite; }
 @keyframes thump { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.18); } 28% { transform: scale(1); } 42% { transform: scale(1.12); } 56% { transform: scale(1); } }
 .gate-for { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2.2rem, 10vw, 3.6rem); margin-top: 1.4rem; }
 .gate-sub { font-family: 'Gaegu', cursive; font-size: 1.3rem; opacity: .8; margin-top: .3rem; }
@@ -46,7 +48,7 @@ em { font-style: italic; color: var(--rose); }
 .hero h1 { font-size: clamp(4.2rem, 21vw, 9.5rem); margin-top: 1.4rem; }
 .hero h1 em { display: inline-block; font-size: 1.25em; line-height: .9; }
 .lead { font-size: clamp(1.05rem, 4.4vw, 1.4rem); line-height: 1.5; margin-top: 1.2rem; }
-.lead b { color: var(--rose); font-size: 1.3em; font-family: 'Fraunces', serif; display: inline-block; min-width: 2.2ch; }
+.lead b { color: var(--rose); font-size: 1.3em; font-family: 'Fraunces', serif; display: inline-block; width: 3.2ch; text-align: center; font-variant-numeric: tabular-nums; }
 
 .hero-photos { position: relative; height: 64vw; max-height: 440px; max-width: 580px; margin: 2.4rem auto 0; perspective: 900px; }
 .pol { position: absolute; background: #fff; padding: 8px 8px 0; border-radius: 6px; box-shadow: 0 16px 38px rgba(59,23,48,.2); width: 46%; will-change: transform; }
@@ -63,8 +65,8 @@ em { font-style: italic; color: var(--rose); }
 @keyframes drop { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
 
 /* ---------- marquee ---------- */
-.marquee { overflow: hidden; background: var(--plum); color: #fff; padding: .9rem 0; transform: rotate(-1.5deg) scale(1.04); margin: -1rem 0 1rem; }
-.track { display: flex; gap: 1.4rem; width: max-content; animation: slide 26s linear infinite; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; white-space: nowrap; }
+.marquee { overflow: hidden; background: var(--plum); color: #fff; padding: .9rem 0; margin: 0 0 1rem; }
+.track { will-change: transform; display: flex; gap: 1.4rem; width: max-content; animation: slide 26s linear infinite; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; white-space: nowrap; }
 .track i { color: var(--rose); font-style: normal; }
 @keyframes slide { to { transform: translateX(-50%); } }
 
@@ -90,18 +92,20 @@ em { font-style: italic; color: var(--rose); }
 
 /* ---------- distance ---------- */
 .distance { background: var(--plum); color: #fff; }
-.dist-stage { height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 6vw; overflow: hidden; }
+.distance { overflow: hidden; width: 100%; }
+.dist-stage { width: 100%; height: 100vh; height: 100lvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 6vw; overflow: hidden; }
 .distance .eyebrow { color: #ffb3c7; }
-.km { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(5rem, 28vw, 13rem); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.km { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(4.6rem, 25vw, 12rem); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .km small { font-size: .22em; font-style: italic; font-weight: 400; margin-left: .15em; color: #ffb3c7; letter-spacing: 0; }
 .dist-track { position: relative; width: min(88vw, 620px); height: 110px; margin-top: 2rem; }
 .dist-line { position: absolute; left: 0; right: 0; top: 38px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.16); overflow: hidden; }
 .dist-line i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--coral), var(--rose), var(--coral)); transform-origin: 50% 50%; }
 .who { position: absolute; top: 6px; width: 64px; text-align: center; will-change: transform; }
-.who span, .who img { width: 64px; height: 64px; border-radius: 50%; border: 4px solid #fff; display: grid; place-items: center; object-fit: cover; object-position: 62% 55%;
+.who img { width: 64px; height: 64px; max-width: none; border-radius: 50%; border: 4px solid #fff; display: block; object-fit: cover; object-position: 62% 55%;
   background: var(--coral); font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; box-shadow: 0 8px 22px rgba(0,0,0,.35); }
 .who b { display: block; margin-top: .35rem; font-family: 'Gaegu', cursive; font-size: 1.15rem; }
 .who.me { left: 0; } .who.you { right: 0; }
+.who.me img { object-position: 50% 60%; }
 .meet { position: absolute; left: 50%; top: 2px; font-size: 4.4rem; line-height: 1; transform: translateX(-50%) scale(0); color: var(--rose); text-shadow: 0 0 30px rgba(232,70,124,.9); }
 .dist-txt { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.2rem, 5.4vw, 1.9rem); margin-top: 1.6rem; min-height: 2.6em; max-width: 26ch; }
 

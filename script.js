@@ -32,7 +32,8 @@ let last = 0;
 
 /* ---------- smooth scrolling ---------- */
 let lenis = null;
-if (typeof Lenis !== 'undefined' && !reduce) {
+const touch = matchMedia('(pointer: coarse)').matches;
+if (typeof Lenis !== 'undefined' && !reduce && !touch) {
   lenis = new Lenis({ duration: 1.15, smoothWheel: true });
   lenis.stop();
   if (hasGsap) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
@@ -63,7 +64,7 @@ function heroIn() {
     .from('#t1 .ch', { yPercent: 110, opacity: 0, rotate: 8, stagger: .045, duration: .7 }, '-=.3')
     .from('#t2 .ch', { yPercent: 120, opacity: 0, scale: .4, stagger: .09, duration: .9, ease: 'back.out(2.2)' }, '-=.35')
     .from('.lead', { y: 24, opacity: 0, duration: .7 }, '-=.4')
-    .add(() => { const o = { v: 0 }; gsap.to(o, { v: DAYS, duration: 1.8, ease: 'power2.out', onUpdate: () => $('#days').textContent = Math.round(o.v) }); }, '<')
+    .add(() => { const o = { v: 0 }, d = $('#days'); let shownV = -1; gsap.to(o, { v: DAYS, duration: 1.6, ease: 'power2.out', onUpdate: () => { const v = Math.round(o.v); if (v !== shownV) { shownV = v; d.textContent = v; } }, onComplete: () => { d.textContent = DAYS; } }); }, '<')
     .from('.p1', { x: -160, y: 80, rotate: -40, opacity: 0, duration: 1, ease: 'back.out(1.4)' }, '-=.5')
     .from('.p2', { x: 160, y: 80, rotate: 40, opacity: 0, duration: 1, ease: 'back.out(1.4)' }, '-=.85')
     .from('.spark', { scale: 0, opacity: 0, stagger: .12, duration: .5, ease: 'back.out(3)' }, '-=.5')
@@ -73,6 +74,7 @@ function heroIn() {
 /* ---------- scroll animations ---------- */
 if (hasGsap && !reduce) {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   gsap.to('#progress', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: .3 } });
 
@@ -92,15 +94,15 @@ if (hasGsap && !reduce) {
 
   // 2000 km -> 0 km, pinned while she scrolls
   const km = $('#km'), dtxt = $('#dtxt'), track = $('.dist-track');
-  const lines = ['Rajasthan → Assam. Every single day of it.', 'Calls instead of coffee. Snaps instead of seeing you.', 'A train, a bag, and new shoes you chose on video call.', 'And today — nothing between us at all.'];
+  const lines = ['That far apart. Every single day of it.', 'Calls instead of coffee. Snaps instead of seeing you.', 'A train, a bag, and new shoes you chose on video call.', 'And today — nothing between us at all.'];
   let shown = -1;
   const half = () => track.offsetWidth / 2 - 32 - 18;
-  gsap.timeline({ scrollTrigger: { trigger: '#distance', start: 'top top', end: '+=220%', pin: true, scrub: .5, invalidateOnRefresh: true,
+  gsap.timeline({ scrollTrigger: { trigger: '#distance', start: 'top top', end: '+=200%', pin: true, pinSpacing: true, anticipatePin: 1, scrub: touch ? true : .5, invalidateOnRefresh: true,
       onUpdate(self) {
-        const p = self.progress, v = Math.round(2000 * (1 - Math.min(p / .82, 1)));
-        km.textContent = v;
+        const p = self.progress, v = Math.round(1590 * (1 - Math.min(p / .82, 1)));
+        if (km.textContent !== String(v)) km.textContent = v;
         const idx = p < .25 ? 0 : p < .5 ? 1 : p < .8 ? 2 : 3;
-        if (idx !== shown) { shown = idx; gsap.fromTo(dtxt, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .45 }); dtxt.textContent = lines[idx]; }
+        if (idx !== shown) { shown = idx; dtxt.textContent = lines[idx]; gsap.fromTo(dtxt, { opacity: 0 }, { opacity: 1, duration: .4, overwrite: true }); }
       },
       onLeave() { burstAt($('#meet'), 40); } } })
     .to('#me', { x: () => half(), ease: 'none', duration: .82 }, 0)
@@ -119,8 +121,6 @@ if (hasGsap && !reduce) {
   $$('[data-from]').forEach(el => gsap.from(el, { x: el.dataset.from === 'left' ? -70 : 70, opacity: 0, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } }));
   gsap.from('.strip figure', { y: 80, opacity: 0, stagger: .06, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.strip', start: 'top 85%' }, clearProps: 'transform,opacity' });
 
-  // marquee leans with scroll speed
-  ScrollTrigger.create({ onUpdate: s => gsap.to('.track', { skewX: gsap.utils.clamp(-12, 12, s.getVelocity() / -180), duration: .4, overwrite: 'auto' }) });
 } else {
   $('#days').textContent = DAYS;
 }
@@ -128,8 +128,7 @@ if (hasGsap && !reduce) {
 /* ---------- polaroids follow the finger / mouse ---------- */
 const tilts = $$('[data-tilt]');
 function tilt(x, y) { tilts.forEach((el, i) => { el.style.transform = `rotate(var(--rot)) rotateY(${x * 14}deg) rotateX(${-y * 12}deg) translate(${x * (i ? -10 : 10)}px, ${y * 8}px)`; }); }
-addEventListener('pointermove', e => { if (scrollY < innerHeight) tilt(e.clientX / innerWidth - .5, e.clientY / innerHeight - .5); }, { passive: true });
-addEventListener('deviceorientation', e => { if (e.gamma != null && scrollY < innerHeight) tilt(Math.max(-1, Math.min(1, e.gamma / 35)) * .5, Math.max(-1, Math.min(1, (e.beta - 40) / 35)) * .5); }, { passive: true });
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse' && scrollY < innerHeight) tilt(e.clientX / innerWidth - .5, e.clientY / innerHeight - .5); }, { passive: true });
 
 /* ---------- gallery: centre card pops, dots follow ---------- */
 const strip = $('#strip'), figs = $$('figure', strip), dots = $('#dots');
