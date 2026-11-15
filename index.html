@@ -3,179 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fff3ea">
+<meta name="theme-color" content="#3b1730">
 <title>Finally, you. — for Medhuu ji</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="locked">
 
+<!-- opening screen -->
+<div id="gate">
+  <div class="gate-inner">
+    <svg class="gate-heart" viewBox="0 0 100 92" aria-hidden="true"><path d="M50 88 C 18 62, 4 44, 6 26 C 8 8, 30 2, 50 22 C 70 2, 92 8, 94 26 C 96 44, 82 62, 50 88 Z"/></svg>
+    <p class="gate-for">for Medhuu ji</p>
+    <p class="gate-sub">something I made for today</p>
+    <button id="open">tap to open</button>
+  </div>
+</div>
+
+<div id="progress"></div>
 <canvas id="hearts" aria-hidden="true"></canvas>
+
+<main id="page">
 
 <!-- ============ 1 · HERO ============ -->
 <header class="hero">
-  <p class="chip reveal">15 November · Vijayawada</p>
-  <h1 class="reveal"><span class="thin">finally,</span><br><em>you.</em></h1>
-  <p class="lead reveal">After <b id="days">493</b> days of screens, snaps and 2&nbsp;a.m. calls —<br>today I get to see you for real.</p>
+  <div class="blob b1" data-speed="0.25"></div><div class="blob b2" data-speed="-0.2"></div>
+  <p class="chip h-in">15 November · Vijayawada</p>
+  <h1><span class="split thin" id="t1">finally,</span><br><em class="split" id="t2">you.</em></h1>
+  <p class="lead h-in">After <b id="days">0</b> days of screens, snaps and 2&nbsp;a.m. calls —<br>today I get to see you for real.</p>
 
-  <div class="hero-photos reveal">
-    <figure class="pol p1"><img src="img/bgmi.jpg" alt=""><figcaption>first photo I saw</figcaption></figure>
-    <figure class="pol p2"><img src="img/white.jpg" alt=""><figcaption>meeting her today</figcaption></figure>
+  <div class="hero-photos">
+    <figure class="pol p1 h-pol" data-tilt><img src="img/bgmi.jpg" alt=""><figcaption>first photo I saw</figcaption></figure>
+    <figure class="pol p2 h-pol" data-tilt><img src="img/white.jpg" alt=""><figcaption>meeting her today</figcaption></figure>
+    <span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">♥</span>
   </div>
-
-  <a class="scroll-hint" href="#story" aria-label="scroll down"><span></span></a>
+  <a class="scroll-hint h-in" href="#story" aria-label="scroll down"><span></span></a>
 </header>
+
+<!-- little things, scrolling by -->
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>did you eat?</span><i>♥</i><span>sleep early</span><i>♥</i><span>a jao maths padhee</span><i>♥</i><span>20 ko mera birthday nahi hai</span><i>♥</i><span>kya hua?</span><i>♥</i><span>duo only</span><i>♥</i><span>chaat papdi</span><i>♥</i>
+  <span>did you eat?</span><i>♥</i><span>sleep early</span><i>♥</i><span>a jao maths padhee</span><i>♥</i><span>20 ko mera birthday nahi hai</span><i>♥</i><span>kya hua?</span><i>♥</i><span>duo only</span><i>♥</i><span>chaat papdi</span><i>♥</i>
+</div></div>
 
 <!-- ============ 2 · HOW WE GOT HERE ============ -->
 <section id="story" class="block">
-  <p class="eyebrow reveal">how we got here</p>
-  <h2 class="reveal">one lobby,<br><em>one very long road</em></h2>
+  <p class="eyebrow" data-anim>how we got here</p>
+  <h2 data-anim>one lobby,<br><em>one very long road</em></h2>
 
-  <ol class="road">
-    <li class="reveal">
-      <div class="dot"></div>
-      <img src="img/bgmi-duo.jpg" alt="">
-      <div><h3>a random BGMI lobby</h3><p>I joined for a chicken dinner. I left with a duo partner for life.</p></div>
-    </li>
-    <li class="reveal">
-      <div class="dot"></div>
-      <img src="img/snaps.jpg" alt="">
-      <div><h3>the snaps era</h3><p>You sent a dog filter. I replied in four seconds and called it “playing it cool”.</p></div>
-    </li>
-    <li class="reveal">
-      <div class="dot"></div>
-      <img src="img/vcall.jpg" alt="">
-      <div><h3>2 a.m. video calls</h3><p>“Sleep early,” we said, every night, to each other, at 1:40 a.m.</p></div>
-    </li>
-    <li class="reveal">
-      <div class="dot"></div>
-      <img src="img/carpet.jpg" alt="">
-      <div><h3>seven little websites</h3><p>Because I couldn't say it directly, I kept building it instead. This is number eight.</p></div>
-    </li>
-    <li class="reveal big">
-      <div class="dot heart"></div>
-      <img src="img/mehndi.jpg" alt="">
-      <div><h3>today · 1 p.m.</h3><p>Nashik → Hyderabad → Vijayawada. Two thousand kilometres, and then just one step towards you.</p></div>
-    </li>
-  </ol>
+  <div class="road-wrap">
+    <svg class="road-line" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+      <path class="road-bg" d="M50 0 C 90 120, 10 200, 50 330 S 90 520, 50 660 S 10 860, 50 1000"/>
+      <path class="road-fg" id="roadpath" d="M50 0 C 90 120, 10 200, 50 330 S 90 520, 50 660 S 10 860, 50 1000"/>
+    </svg>
+    <ol class="road">
+      <li><img src="img/bgmi-duo.jpg" alt="" data-zoom><div><span class="step">01</span><h3>a random BGMI lobby</h3><p>I joined for a chicken dinner. I left with a duo partner for life.</p></div></li>
+      <li><img src="img/snaps.jpg" alt="" data-zoom><div><span class="step">02</span><h3>the snaps era</h3><p>You sent a dog filter. I replied in four seconds and called it “playing it cool”.</p></div></li>
+      <li><img src="img/vcall.jpg" alt="" data-zoom><div><span class="step">03</span><h3>2 a.m. video calls</h3><p>“Sleep early,” we said, every night, to each other, at 1:40 a.m.</p></div></li>
+      <li><img src="img/carpet.jpg" alt="" data-zoom><div><span class="step">04</span><h3>seven little websites</h3><p>Because I couldn't say it directly, I kept building it instead. This is number eight.</p></div></li>
+      <li class="big"><img src="img/mehndi.jpg" alt="" data-zoom><div><span class="step">05</span><h3>today · 1 p.m.</h3><p>Nashik → Hyderabad → Vijayawada. And then just one step towards you.</p></div></li>
+    </ol>
+  </div>
 </section>
 
-<!-- ============ 3 · UPS AND DOWNS ============ -->
-<section class="block tint">
-  <p class="eyebrow reveal">not always easy. always us.</p>
-  <h2 class="reveal">our ups <em>&amp; downs</em></h2>
+<!-- ============ 3 · THE DISTANCE ============ -->
+<section class="distance" id="distance">
+  <div class="dist-stage">
+    <p class="eyebrow">the distance between us</p>
+    <div class="km"><span id="km">2000</span><small>km</small></div>
+    <div class="dist-track">
+      <div class="dist-line"><i id="dline"></i></div>
+      <div class="who me" id="me"><span>A</span><b>me</b></div>
+      <div class="who you" id="you"><img src="img/world.jpg" alt=""><b>you</b></div>
+      <div class="meet" id="meet">♥</div>
+    </div>
+    <p class="dist-txt" id="dtxt">Rajasthan → Assam. Every single day of it.</p>
+  </div>
+</section>
 
-  <svg class="beat reveal" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true">
-    <path id="beatline" d="M0 70 H80 L100 30 L120 110 L140 70 H220 L240 96 L262 120 L286 70 H360 L378 22 L398 104 L416 70 H470 C 490 20, 520 20, 535 52 C 550 20, 580 20, 600 70" />
+<!-- ============ 4 · UPS AND DOWNS ============ -->
+<section class="block tint">
+  <p class="eyebrow" data-anim>not always easy. always us.</p>
+  <h2 data-anim>our ups <em>&amp; downs</em></h2>
+  <svg class="beat" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true">
+    <path id="beatline" d="M0 70 H80 L100 30 L120 110 L140 70 H220 L240 96 L262 120 L286 70 H360 L378 22 L398 104 L416 70 H470 C 490 20, 520 20, 535 52 C 550 20, 580 20, 600 70"/>
   </svg>
-
   <div class="cards2">
-    <article class="note up reveal"><span>↑</span><h3>the highs</h3><p>Your laugh on call. Your “did you eat?”. The day you sold ₹2,800 of candles and I couldn't stop smiling at my desk.</p></article>
-    <article class="note down reveal"><span>↓</span><h3>the lows</h3><p>The days we went quiet. The distance. The nights that felt longer than they were.</p></article>
-    <article class="note mid reveal"><span>♥</span><h3>what stayed</h3><p>You picked up. So did I. And you asked for one thing — <b>“no matter how bad it gets, talk to me at least once.”</b> I will. Always first.</p></article>
+    <article class="note up" data-card><span>↑</span><h3>the highs</h3><p>Your laugh on call. Your “did you eat?”. The day you sold ₹2,800 of candles and I couldn't stop smiling at my desk.</p></article>
+    <article class="note down" data-card><span>↓</span><h3>the lows</h3><p>The days we went quiet. The distance. The nights that felt longer than they were.</p></article>
+    <article class="note mid" data-card><span>♥</span><h3>what stayed</h3><p>You picked up. So did I. And you asked for one thing — <b>“no matter how bad it gets, talk to me at least once.”</b> I will. Always first.</p></article>
   </div>
 </section>
 
-<!-- ============ 4 · WHAT WE DO FOR EACH OTHER ============ -->
+<!-- ============ 5 · FOR EACH OTHER ============ -->
 <section class="block">
-  <p class="eyebrow reveal">the small things</p>
-  <h2 class="reveal">what we do<br><em>for each other</em></h2>
-
+  <p class="eyebrow" data-anim>the small things</p>
+  <h2 data-anim>what we do<br><em>for each other</em></h2>
   <div class="two">
-    <div class="col reveal">
-      <h3 class="tag her">what you do for me</h3>
+    <div class="col">
+      <h3 class="tag her" data-anim>what you do for me</h3>
       <ul>
-        <li><img src="img/gifts1.jpg" alt=""><p>a moon lamp, a KitKat, a rose that never wilts</p></li>
-        <li><img src="img/gifts2.jpg" alt=""><p>a perfume, so now I smell like your choice</p></li>
-        <li><img src="img/vcall2.jpg" alt=""><p>you picked my t-shirts on video call while I stood in a trial room</p></li>
-        <li><img src="img/world.jpg" alt=""><p>you ask “did you eat?” like it's the most important question in the world</p></li>
+        <li data-from="left"><img src="img/gifts1.jpg" alt="" data-zoom><p>a moon lamp, a KitKat, a rose that never wilts</p></li>
+        <li data-from="left"><img src="img/gifts2.jpg" alt="" data-zoom><p>a perfume, so now I smell like your choice</p></li>
+        <li data-from="left"><img src="img/vcall2.jpg" alt="" data-zoom><p>you picked my t-shirts on video call while I stood in a trial room</p></li>
+        <li data-from="left"><img src="img/world.jpg" alt="" data-zoom><p>you ask “did you eat?” like it's the most important question in the world</p></li>
       </ul>
     </div>
-    <div class="col reveal">
-      <h3 class="tag him">what I do for you</h3>
+    <div class="col">
+      <h3 class="tag him" data-anim>what I do for you</h3>
       <ul>
-        <li><img src="img/monday.jpg" alt=""><p>I build you websites when my mouth won't cooperate</p></li>
-        <li><img src="img/candle1.jpg" alt=""><p>I'm your loudest fan — and I pay full price for your candles</p></li>
-        <li><img src="img/nails.jpg" alt=""><p>I notice every new nail colour (even when I say it late)</p></li>
-        <li><img src="img/teddy.jpg" alt=""><p>I gave you a teddy, and I've been jealous of him ever since</p></li>
+        <li data-from="right"><img src="img/monday.jpg" alt="" data-zoom><p>I build you websites when my mouth won't cooperate</p></li>
+        <li data-from="right"><img src="img/candle1.jpg" alt="" data-zoom><p>I'm your loudest fan — and I pay full price for your candles</p></li>
+        <li data-from="right"><img src="img/nails.jpg" alt="" data-zoom><p>I notice every new nail colour (even when I say it late)</p></li>
+        <li data-from="right"><img src="img/teddy.jpg" alt="" data-zoom><p>I gave you a teddy, and I've been jealous of him ever since</p></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ 5 · EVERY SHADE OF YOU ============ -->
-<section class="block tint">
-  <p class="eyebrow reveal">my gallery, basically</p>
-  <h2 class="reveal">every shade <em>of you</em></h2>
-  <p class="sub reveal">swipe →</p>
-
-  <div class="strip reveal" id="strip">
-    <figure><img src="img/red.jpg" alt=""><figcaption>red mekhela. unfair.</figcaption></figure>
-    <figure><img src="img/blue.jpg" alt=""><figcaption>blue, and the jhumkas</figcaption></figure>
-    <figure><img src="img/green.jpg" alt=""><figcaption>that hand-in-hair pose</figcaption></figure>
-    <figure><img src="img/beige.jpg" alt=""><figcaption>golden hour did the rest</figcaption></figure>
-    <figure><img src="img/maroon.jpg" alt=""><figcaption>looking like you know</figcaption></figure>
-    <figure><img src="img/grey.jpg" alt=""><figcaption>I forgot what I was saying</figcaption></figure>
-    <figure><img src="img/yellow.jpg" alt=""><figcaption>this smile, saved instantly</figcaption></figure>
-    <figure><img src="img/mirror.jpg" alt=""><figcaption>white dress, no warning</figcaption></figure>
-    <figure><img src="img/bow.jpg" alt=""><figcaption>my lock screen, secretly</figcaption></figure>
-    <figure><img src="img/bow2.jpg" alt=""><figcaption>the bow, round two</figcaption></figure>
-    <figure><img src="img/mirror2.jpg" alt=""><figcaption>plants, mirror, you</figcaption></figure>
-    <figure><img src="img/glasses.jpg" alt=""><figcaption>glasses + hearts</figcaption></figure>
-    <figure><img src="img/flower.jpg" alt=""><figcaption>the most “you” photo</figcaption></figure>
-    <figure><img src="img/bw.jpg" alt=""><figcaption>that laugh</figcaption></figure>
-    <figure><img src="img/lips.jpg" alt=""><figcaption>I wore sunglasses to survive</figcaption></figure>
-    <figure><img src="img/school.jpg" alt=""><figcaption>school days, mid-air</figcaption></figure>
-    <figure><img src="img/child.jpg" alt=""><figcaption>tiny you, same smile</figcaption></figure>
+<!-- ============ 6 · GALLERY ============ -->
+<section class="block tint gallery">
+  <p class="eyebrow" data-anim>my gallery, basically</p>
+  <h2 data-anim>every shade <em>of you</em></h2>
+  <p class="sub" data-anim>swipe → &nbsp;·&nbsp; tap a photo to open it</p>
+  <div class="strip" id="strip">
+    <figure><img src="img/red.jpg" alt="" data-zoom><figcaption>red mekhela. unfair.</figcaption></figure>
+    <figure><img src="img/blue.jpg" alt="" data-zoom><figcaption>blue, and the jhumkas</figcaption></figure>
+    <figure><img src="img/green.jpg" alt="" data-zoom><figcaption>that hand-in-hair pose</figcaption></figure>
+    <figure><img src="img/beige.jpg" alt="" data-zoom><figcaption>golden hour did the rest</figcaption></figure>
+    <figure><img src="img/maroon.jpg" alt="" data-zoom><figcaption>looking like you know</figcaption></figure>
+    <figure><img src="img/grey.jpg" alt="" data-zoom><figcaption>I forgot what I was saying</figcaption></figure>
+    <figure><img src="img/yellow.jpg" alt="" data-zoom><figcaption>this smile, saved instantly</figcaption></figure>
+    <figure><img src="img/mirror.jpg" alt="" data-zoom><figcaption>white dress, no warning</figcaption></figure>
+    <figure><img src="img/bow.jpg" alt="" data-zoom><figcaption>my lock screen, secretly</figcaption></figure>
+    <figure><img src="img/bow2.jpg" alt="" data-zoom><figcaption>the bow, round two</figcaption></figure>
+    <figure><img src="img/mirror2.jpg" alt="" data-zoom><figcaption>plants, mirror, you</figcaption></figure>
+    <figure><img src="img/glasses.jpg" alt="" data-zoom><figcaption>glasses + hearts</figcaption></figure>
+    <figure><img src="img/flower.jpg" alt="" data-zoom><figcaption>the most “you” photo</figcaption></figure>
+    <figure><img src="img/bw.jpg" alt="" data-zoom><figcaption>that laugh</figcaption></figure>
+    <figure><img src="img/lips.jpg" alt="" data-zoom><figcaption>I wore sunglasses to survive</figcaption></figure>
+    <figure><img src="img/school.jpg" alt="" data-zoom><figcaption>school days, mid-air</figcaption></figure>
+    <figure><img src="img/child.jpg" alt="" data-zoom><figcaption>tiny you, same smile</figcaption></figure>
   </div>
+  <div class="strip-dots" id="dots"></div>
 </section>
 
-<!-- ============ 6 · NOW PLAYING ============ -->
+<!-- ============ 7 · NOW PLAYING ============ -->
 <section class="block">
-  <p class="eyebrow reveal">now playing</p>
-  <h2 class="reveal">queen of <em>the dance floor</em></h2>
+  <p class="eyebrow" data-anim>now playing</p>
+  <h2 data-anim>queen of <em>the dance floor</em></h2>
   <div class="phones">
-    <div class="phone reveal"><video src="video/her.mp4" poster="img/vid-her.jpg" playsinline controls preload="none"></video><p>routine 1</p></div>
-    <div class="phone reveal"><video src="video/her2.mp4" poster="img/vid-her2.jpg" playsinline controls preload="none"></video><p>routine 2</p></div>
-    <div class="phone reveal"><video src="video/my.mp4" poster="img/vid-my.jpg" playsinline controls preload="none"></video><p>my attempt (don't laugh)</p></div>
+    <div class="phone" data-card><video src="video/her.mp4" poster="img/vid-her.jpg" playsinline controls preload="none"></video><p>routine 1</p></div>
+    <div class="phone" data-card><video src="video/her2.mp4" poster="img/vid-her2.jpg" playsinline controls preload="none"></video><p>routine 2</p></div>
+    <div class="phone" data-card><video src="video/my.mp4" poster="img/vid-my.jpg" playsinline controls preload="none"></video><p>my attempt (don't laugh)</p></div>
   </div>
-  <p class="sub reveal">I still owe you a rematch. Today, maybe — in person.</p>
+  <p class="sub center" data-anim>I still owe you a rematch. Today, maybe — in person.</p>
 </section>
 
-<!-- ============ 7 · TODAY ============ -->
+<!-- ============ 8 · TODAY ============ -->
 <section class="block tint" id="today">
-  <p class="eyebrow reveal">this part was empty until today</p>
-  <h2 class="reveal">the day <em>we met</em></h2>
-  <p class="sub reveal" id="today-empty">No photos here yet — because every photo before today was only one of us.<br><b>Let's fill this together.</b></p>
+  <p class="eyebrow" data-anim>this part was empty until today</p>
+  <h2 data-anim>the day <em>we met</em></h2>
+  <p class="sub" id="today-empty" data-anim>No photos here yet — because every photo before today was only one of us.<br><b>Let's fill this together.</b></p>
   <div class="today-grid" id="today-grid"></div>
 </section>
 
-<!-- ============ 8 · HOLD MY HAND ============ -->
+<!-- ============ 9 · HOLD MY HAND ============ -->
 <section class="block final">
-  <p class="eyebrow reveal">one last thing</p>
-  <h2 class="reveal">hold my hand?</h2>
-  <p class="sub reveal">Press and hold the heart. Don't let go.</p>
+  <p class="eyebrow" data-anim>one last thing</p>
+  <h2 data-anim>hold my hand?</h2>
+  <p class="sub" data-anim>Press and hold the heart. Don't let go.</p>
 
-  <button class="hold reveal" id="hold" aria-label="press and hold">
+  <button class="hold" id="hold" aria-label="press and hold" data-anim>
+    <span class="ring"></span><span class="ring r2"></span>
     <svg viewBox="0 0 100 92" aria-hidden="true">
       <defs><clipPath id="hc"><path d="M50 88 C 18 62, 4 44, 6 26 C 8 8, 30 2, 50 22 C 70 2, 92 8, 94 26 C 96 44, 82 62, 50 88 Z"/></clipPath></defs>
       <path class="h-bg" d="M50 88 C 18 62, 4 44, 6 26 C 8 8, 30 2, 50 22 C 70 2, 92 8, 94 26 C 96 44, 82 62, 50 88 Z"/>
       <rect class="h-fill" id="hfill" x="0" y="92" width="100" height="92" clip-path="url(#hc)"/>
       <path class="h-line" d="M50 88 C 18 62, 4 44, 6 26 C 8 8, 30 2, 50 22 C 70 2, 92 8, 94 26 C 96 44, 82 62, 50 88 Z"/>
     </svg>
-    <span id="holdtxt">hold</span>
+    <span class="hold-txt" id="holdtxt">hold</span>
   </button>
 
   <div class="promise" id="promise" hidden>
     <h3>from Vijayawada,<br><em>till the very end.</em></h3>
-    <p>I'm not letting go. Not after today, not after two years, not after anything.</p>
+    <p id="typed"></p>
     <p class="sign">— your Ankit</p>
   </div>
 </section>
 
 <footer>made by hand, for one person only · website no. 8</footer>
+</main>
 
+<!-- photo viewer -->
+<div id="lightbox" hidden><img alt=""><p></p><button aria-label="close">×</button></div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
